@@ -14,6 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->get('/test', 'TestController@test');
+$router->get('/test', [
+    'uses' => 'TestController@test',
+    'as' => 'test'
+]);
 
-$router->get('/toto', 'TestController@toto');
+$router->get('/toto', [
+    'uses' => 'TestController@toto',
+    'as' => 'toto'
+]);

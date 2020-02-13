@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -15,8 +15,11 @@ class TestController extends Controller
     {
         return response()->json(['test' => 'true']);
     }
-    public function toto()
-    {
-        return '<h1>Toto vous répond</h1>';
+    public function toto(Request $request)
+    {   
+        $number = $request->input('nb'); 
+        return view('toto', [
+            'number' => $number,
+        ]);
     }
 }
