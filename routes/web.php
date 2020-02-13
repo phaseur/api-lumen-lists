@@ -10,16 +10,53 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
+// test api
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->get('/test', [
-    'uses' => 'TestController@test',
-    'as' => 'test'
+
+// read all
+
+$router->get('/categories', [
+    'uses' => 'CategoryController@list',
+    'as' => 'categories'
+]);
+$router->get('/tasks', [
+    'uses' => 'TaskController@list',
+    'as' => 'tasks'
 ]);
 
-$router->get('/toto', [
-    'uses' => 'TestController@toto',
-    'as' => 'toto'
+
+// read by id
+
+$router->get('/categories/{id}', [
+    'uses' => 'CategoryController@read',
+    'as' => 'category'
+]);
+$router->get('/tasks/{id}', [
+    'uses' => 'TaskController@read',
+    'as' => 'task'
+]);
+
+
+ // delete
+
+$router->delete('/categories/{id}', [
+    'uses' => 'CategoryController@delete',
+    'as' => 'category-delete'
+]);
+$router->delete('/tasks/{id}', [
+    'uses' => 'TaskController@delete',
+    'as' => 'task-delete'
+]);
+
+// update
+
+$router->put('/tasks/{id}', [
+    'uses' => 'TaskController@update',
+    'as' => 'task-update'
+]);
+$router->put('/categories/{id}', [
+    'uses' => 'CategoryController@update',
+    'as' => 'category-update'
 ]);
