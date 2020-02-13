@@ -15,4 +15,8 @@ class TestController extends Controller
     {
         return response()->json(['test' => 'true']);
     }
+    public function toto()
+    {
+        return '<h1>Toto vous répond</h1>';
+    }
 }
