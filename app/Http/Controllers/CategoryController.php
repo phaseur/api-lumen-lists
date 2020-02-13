@@ -20,17 +20,14 @@ class CategoryController extends Controller
         return $this->jsonWithCORS($category);
     }
     public function delete(Request $request, $id){
+    
+        $category = Category::findOrFail($id);
 
-        dump($request);
-        return 'coucou suppression';
-        // $category = Category::findOrFail($id);
-
-        // $Category->delete();
-        
-        //
+        $category->delete();
+         
     }
     public function update(Request $request, $id){
-        dump($request);
+        
         $category = Category::findOrFail($id);
   
         $category->update();

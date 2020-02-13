@@ -20,17 +20,14 @@ class TaskController extends Controller
         return $this->jsonWithCORS($task);
     }
     public function delete(Request $request, $id){
-
-        dump($request);
-        return 'coucou suppression';
-        // $task = Task::findOrFail($id);
-
-        // $task->delete();
         
-        //
+        $task = Task::findOrFail($id);
+
+        $task->delete();
+        
     }
     public function update(Request $request, $id){
-      dump($request);
+        
       $task = Task::findOrFail($id);
 
       $task->update();
