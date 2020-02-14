@@ -27,9 +27,43 @@ class TaskController extends Controller
         
     }
     public function update(Request $request, $id){
-        
-      $task = Task::findOrFail($id);
+      // La on récupère tous les champs qui ont été remplis 
+    //   dump($request->all());  
+      $task = Task::find($id);
 
-      $task->update();
+      // si pas de taks
+      if(!$task){
+          return $this->err404();
+      } else {
+
+        $requestData = $request->all();
+        // possible grace a fillable dans le model
+       $result = $task->update($requestData);
+
+       if($result){
+         return $this->succ200();
+       }
+       else{
+           // par défaut lumen renvoie erreur 500 si erreur interne
+         return $this->err500();
+       }
+      }
+    }
+    public function create(Request $request){
+
+      if($request->has('title') & $request->has('category_id') & $request->has('status') & $request->has('completion')){
+        $task = new Task();
+        $requestData = $request->all();
+        $result = $task->create($requestData);
+        if($result){
+          return $this->succ200($task);
+        }
+      }
+      else {
+        return $this->err500();
+      }
+
+
+      
     }
 }

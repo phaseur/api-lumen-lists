@@ -26,7 +26,6 @@ $router->get('/tasks', [
     'as' => 'tasks'
 ]);
 
-
 // read by id
 
 $router->get('/categories/{id}', [
@@ -37,7 +36,6 @@ $router->get('/tasks/{id}', [
     'uses' => 'TaskController@read',
     'as' => 'task'
 ]);
-
 
  // delete
 
@@ -52,11 +50,18 @@ $router->delete('/tasks/{id}', [
 
 // update
 
-$router->put('/tasks/{id}', [
+$router->post('/tasks/{id}', [
     'uses' => 'TaskController@update',
     'as' => 'task-update'
 ]);
-$router->put('/categories/{id}', [
+$router->post('/categories/{id}', [
     'uses' => 'CategoryController@update',
     'as' => 'category-update'
+]);
+
+// create
+
+$router->post('/tasks', [
+    'uses' => 'TaskController@create',
+    'as' => 'task-create'
 ]);

@@ -6,5 +6,4 @@ use Illuminate\Database\Eloquent\Model;
  * https://laravel.com/docs/6.x/eloquent
  */
 
- class Category extends Model {
- }
+ class Category extends Model {}

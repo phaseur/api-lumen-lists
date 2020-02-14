@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 
  class Task extends Model {
+     // permet de dire les chammps qu'on peut changer et ignorer les autres
+     protected $fillable = [
+         'title',
+         'completion',
+         'status',
+         'category_id'
+     ];
  }
