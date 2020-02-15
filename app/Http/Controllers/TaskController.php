@@ -56,11 +56,14 @@ class TaskController extends Controller
         $requestData = $request->all();
         $result = $task->create($requestData);
         if($result){
-          return $this->succ200($task);
+          return $this->jsonWithCORS($result);
+        } 
+        else {
+          return $this->err500();
         }
       }
       else {
-        return $this->err500();
+        return $this->err404();
       }
 
 
