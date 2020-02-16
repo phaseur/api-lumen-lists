@@ -21,9 +21,23 @@ class TaskController extends Controller
     }
     public function delete(Request $request, $id){
         
-        $task = Task::findOrFail($id);
+      $task = Task::find($id);
 
-        $task->delete();
+      // si pas de taks
+      if(!$task){
+          return $this->err404();
+      } else {
+        
+       $result = $task->delete();
+
+       if($result){
+         return $this->succ200();
+       }
+       else{
+           // par défaut lumen renvoie erreur 500 si erreur interne
+         return $this->err500();
+       }
+      }
         
     }
     public function update(Request $request, $id){

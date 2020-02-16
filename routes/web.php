@@ -40,6 +40,7 @@ $router->get('/tasks/{id}', [
  // delete
 
 $router->delete('/categories/{id}', [
+    'middleware' => 'Middleware:access',
     'uses' => 'CategoryController@delete',
     'as' => 'category-delete'
 ]);
